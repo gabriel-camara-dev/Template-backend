@@ -1,6 +1,6 @@
 # Meu Template
 
-Este é um template para projetos Prisma com autenticação. Siga os passos abaixo para começar:
+Este é um template para projetos Prisma e Fastify com autenticação. Siga os passos abaixo para começar:
 
 1. Clone este repositório: `git clone https://github.com/gabriel-camara-dev/Template-backend.git`.
 2. Instale as dependências: `npm install`.
