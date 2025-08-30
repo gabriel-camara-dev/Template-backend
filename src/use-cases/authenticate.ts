@@ -46,7 +46,7 @@ export class AuthenticateUseCase {
       throw new InvalidCredentialsError()
     }
 
-    const doesPasswordMatch = await compare(password, user.password_digest)
+    const doesPasswordMatch = await compare(password, user.passwordDigest)
 
     if (!doesPasswordMatch) {
       await this.authenticationAuditRepository.create({
@@ -62,7 +62,7 @@ export class AuthenticateUseCase {
     await this.authenticationAuditRepository.create({
       ...auditAuthenticateObject,
       status: 'SUCCESS',
-      user_id: user.id,
+      userId: user.id,
     })
     return {
       user,

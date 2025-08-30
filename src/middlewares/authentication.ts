@@ -20,7 +20,7 @@ export async function authentication(request: FastifyRequest, reply: FastifyRepl
 
           const usersRepository = new PrismaUsersRepository()
 
-          const user = await usersRepository.findbyId(user_id)
+          const user = await usersRepository.findByPublicId(user_id)
 
           if (user === null) {
                throw new Error()

@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { env } from '../../../env'
 import { InvalidCredentialsError } from '../../../use-cases/errors/invalid-credentials-error'
 import { makeAuthenticateUseCase } from '../../../use-cases/factories/make-authenticate-use-case'
+import { UserPresenter } from '../../presenters/user-presenter'
 
 export async function authenticate(
   request: FastifyRequest,
@@ -37,7 +38,7 @@ export async function authenticate(
       {},
       {
         sign: {
-          sub: user?.id,
+          sub: user?.publicId,
         },
       }
     )
@@ -46,7 +47,7 @@ export async function authenticate(
       {},
       {
         sign: {
-          sub: user?.id,
+          sub: user?.publicId,
           expiresIn: '7d',
         },
       }
@@ -60,7 +61,7 @@ export async function authenticate(
         httpOnly: true,
       })
       .status(200)
-      .send({ user, accessToken })
+      .send({ user: UserPresenter.toHTTP(user), accessToken })
   } catch (err: unknown) {
     if (err instanceof InvalidCredentialsError) {
       return await reply.status(400).send({ message: err.message })

@@ -8,7 +8,7 @@ export function verifyPermissions(allowedRoles: USER_ROLE[]) {
 
     const usersRepository = new PrismaUsersRepository()
 
-    const user = await usersRepository.findbyId(userId)
+    const user = await usersRepository.findByPublicId(userId)
 
     if (user === null) {
       throw new Error()
