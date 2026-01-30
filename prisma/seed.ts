@@ -10,7 +10,7 @@ async function main() {
     create: {
       name: "Admin",
       email: "email@example.com",
-      password_digest: await hash("12345678", 10),
+      passwordDigest: await hash("12345678", 10),
     }
   })
 }
